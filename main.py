@@ -32,3 +32,22 @@ def get_user(user_id: int):
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+# Very small post
+post = {
+    "id": 1,
+    "title": "First deployment",
+    "content": "This site is running on Render using FastAPI."
+}
+
+@app.get("/")
+def root():
+    return {"message": "API is running"}
+
+@app.get("/post")
+def get_post():
+    return post
+
